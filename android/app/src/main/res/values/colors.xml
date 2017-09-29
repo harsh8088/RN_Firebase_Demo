@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="txt_black">#000000</color>
+
+
+    <!--Background colors-->
+    <color name="bg_app">#FFFFFF</color>
+    <color name="bg_ghost_white">#f8f9fa</color>
+    <color name="bg_50_alpha_ghost_white">#80f8f9fa</color>
+    <color name="bg_violet">#6900c8</color>
+    <color name="bg_green">#39B64C</color>
+    <color name="bg_yellow">#ffcd00</color>
+    <color name="bg_blue_light">#00AAFF</color>
+    <color name="bg_red">#FF2D55</color>
+    <color name="bg_dark_blue">#2B4B82</color>
+    <color name="bg_dark_magenta">#ff0064</color>
+    <!--Other colors-->
+    <color name="violet">#663398</color>
+    <!-- new ui colors will remove old in the end, names as per sympli to avoid confusion -->
+    <color name="cool_grey">#808fa5</color>
+    <color name="midnight_blue">#1b1b7f</color>
+    <color name="indigo">#400092</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="dodger_blue">#0a96fa</color>
+    <color name="dodger_blue_alpha40">#660a96fa</color>
+    <color name="white_smoke">#f3f4f6</color>
+    <color name="awesome_pink">#ff2355</color>
+    <color name="awesome_pink_alpha40">#66ff2355</color>
+    <color name="awesome_pink1">#ffe9ee</color>
+    <color name="awesome_pink2">#ff96ae</color>
+    <color name="lime_green">#14c814</color>
+    <color name="gold">#fad200</color>
+    <color name="gold_alpha40">#66fad200</color>
+    <color name="pastel_blue">#b3bcc9</color>
+    <color name="platinum">#e5e8ed</color>
+    <color name="psychedelic_pink">#dc00fa</color>
+    <color name="transparent">#00000000</color>
+    <color name="black_alpha_50">#80000000</color>
+
+</resources>

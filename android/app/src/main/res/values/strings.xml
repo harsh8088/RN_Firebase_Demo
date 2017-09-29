@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">DemoApp</string>
+    <string name="facebook_app_id">469477200052688</string>
+    <string name="url">Url</string>
+    <string name="book_name">Book Name</string>
+    <string name="author">Author</string>
+    <string name="price">Price</string>
+    <string name="publish_year">Publish Year</string>
+    <string name="save">Save</string>
+    <string name="cancel">cancel</string>
+</resources>
