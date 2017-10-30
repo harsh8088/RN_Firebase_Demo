@@ -19,8 +19,8 @@ export class DrawerItem extends Component {
         console.log("drawerItem constructor started.");
         super(props);
         this.state = {
-            email: null,
-            name: null,
+            email: 'Username',
+            name: 'abc@xyz.com',
         }
 
     }
@@ -44,10 +44,10 @@ export class DrawerItem extends Component {
                             source={require('../images/user_place_holder.png')}
                             style={styles.imageThumbnail} />
                         <Text style={[styles.text, { fontWeight: 'bold' }]}>
-                            {username}
+                            {this.state.name}
                         </Text>
                         <Text style={styles.email}>
-                            {userEmail}
+                            {this.state.email}
                         </Text>
                     </View>
 
@@ -84,7 +84,7 @@ export class DrawerItem extends Component {
                         onPress={() => this.props.closeControlPanel()}
                     >
                         <ImageUploadObj.ImageUpload isLoading={() => { this.props.isLoading() }}
-                        isLoaded={() => { this.props.isLoaded() }}/>
+                            isLoaded={() => { this.props.isLoaded() }} />
                         <Text style={styles.itemText}>
                             Upload</Text>
                     </TouchableOpacity>
@@ -142,7 +142,7 @@ export class DrawerItem extends Component {
 
     async getUserDetails() {
         try {
-            const userData = await AsyncStorage.getItem('user_data:key');
+            const userData = await AsyncStorage.getItem('@user_data:key');
             if (userData !== null) {
                 // We have data!!
                 const user = JSON.stringify(userData);
@@ -168,6 +168,8 @@ export class DrawerItem extends Component {
                     text: 'OK', onPress: () => {
                         AsyncStorage.removeItem('user_data:key',
                             (error) => { console.log("AsyncError: ", error) });
+                        //Try Actions.ROUTE_NAME({type: 'replace'}) where ROUTE_NAME is name of current route.
+                        // Actions.signIn({ type: 'replace' })
                         Actions.signIn();
                     }
                 },
@@ -193,7 +195,6 @@ export class DrawerItem extends Component {
                     break;
                 case 'default':
                     break;
-
                 default:
                     break;
 

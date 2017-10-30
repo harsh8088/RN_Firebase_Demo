@@ -4,7 +4,8 @@ import React, { Component } from 'react';
 
 import {
     ScrollView, Text, StyleSheet, View, TextInput, Image, KeyboardAvoidingView, Keyboard,
-    TouchableWithoutFeedback, TouchableOpacity, Button, AsyncStorage,NetInfo
+    TouchableWithoutFeedback, TouchableOpacity, Button, AsyncStorage, NetInfo, BackHandler,
+    Platform
 } from 'react-native';
 import { Actions } from "react-native-router-flux";
 
@@ -31,6 +32,18 @@ export default class SignIn extends Component {
 
     componentWillMount() {
         console.log('signIn componentWillMount called:');
+
+        if(Platform.OS=="android")
+        BackHandler.addEventListener('hardwareBackPress', function () {
+            if (Actions.currentScene == 'signIn') {
+                BackHandler.exitApp()
+                // Actions.pop()
+                // Actions.signIn({ type: "replace" })
+                return true;
+            }
+            else
+                return false;
+        });
     }
 
     render() {
@@ -126,6 +139,12 @@ export default class SignIn extends Component {
         console.log('SignIN componentDidMount called');
     }
 
+
+    componentWillUnmount() {
+        console.log('SignIN componentWillUnmount called');
+        // BackHandler.removeEventListener('hardwareBackPress', () => { });
+    }
+
     // async checkAuthStateChanged() {
     //     try {
     //         await Firebase.auth().onAuthStateChanged((user) => {
@@ -174,15 +193,17 @@ export default class SignIn extends Component {
                             email: user.email,
                             profilePic: user.photo
                         }
-                        AsyncStorage.setItem('user_data:key', JSON.stringify(userData),
+
+                        AsyncStorage.setItem('@user_data:key', JSON.stringify(userData),
                             (error) => {
                                 console.log("AsyncError: ", error)
                             });
+
                         Actions.home();
                     })
                     .catch((err) => {
                         this.setState({ visible: false });
-                        Toast.show(""+err);
+                        Toast.show("" + err);
                         //    console.error('User signin error', err);
                     });
 

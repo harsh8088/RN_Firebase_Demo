@@ -22,7 +22,7 @@ export class Toolbar extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <TouchableOpacity style={[styles.container, { marginLeft: 15 }]}
+                <TouchableOpacity style={[styles.container, { padding: 15 }]}
                     onPress={() => { this.props.openControlPanel() }} >
                     <Icon name='bars'
                         size={25}
@@ -34,11 +34,11 @@ export class Toolbar extends Component {
                        </Text>
                 </View>
                 <View style={styles.rightContainer}>
-                    <ImageUploadObj.ImageUpload isLoading={() => { this.props.isLoading() }}
+                    <ImageUploadObj.ImageUpload style={{ padding: 5 }} isLoading={() => { this.props.isLoading() }}
                         isLoaded={() => { this.props.isLoaded() }} />
                     <View
-                        style={{ marginLeft: 15 }} />
-                    <TouchableOpacity style={{ marginRight: 5 }} onPress={() => this.logout()}>
+                        style={{ marginLeft: 5 }} />
+                    <TouchableOpacity style={[styles.container, { padding: 10 }]} onPress={() => this.logout()}>
                         <Icon
                             name='ellipsis-v'
                             size={30}
@@ -61,6 +61,7 @@ export class Toolbar extends Component {
                     text: 'OK', onPress: () => {
                         AsyncStorage.removeItem('user_data:key',
                             (error) => { console.log("AsyncError: ", error) });
+                        // Actions.home({ type: "replace" })
                         Actions.signIn();
                     }
                 },
@@ -90,7 +91,7 @@ const styles = StyleSheet.create({
     },
 
     centerContainer: {
-        paddingLeft: 15,
+        paddingLeft: 10,
         flex: 1
     },
     rightContainer: {

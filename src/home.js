@@ -1,9 +1,9 @@
 
 import React, { Component } from 'react';
 import {
-  ScrollView, StyleSheet, Text, View, Image,
-  TouchableOpacity, Button, ListView, Platform,
-  ActivityIndicator, RefreshControl, Dimensions, StatusBar, NetInfo, Alert
+  ScrollView, StyleSheet, Text, View, Image, TouchableOpacity, Button,
+  ListView, Platform, ActivityIndicator, RefreshControl, Dimensions, StatusBar,
+  NetInfo, Alert, BackHandler
 } from 'react-native';
 
 import ForgotPassword from './auth/forgotPassword';
@@ -39,8 +39,6 @@ export default class Home extends Component {
     this.openControlPanel = this.openControlPanel.bind(this);
     this.closeControlPanel = this.closeControlPanel.bind(this);
     console.log('home constructor called:');
-    
-
 
   }
 
@@ -57,6 +55,24 @@ export default class Home extends Component {
   componentWillMount() {
     console.log('home componentWillMount called:')
 
+    if (Platform.OS == "android")
+      BackHandler.addEventListener('hardwareBackPress', function () {
+        if (Actions.currentScene == 'home') {
+          Alert.alert(
+            "Exit App",
+            "Are you sure you want to exit?",
+            [
+              { text: 'No', onPress: () => console.log('OK Pressed!') },
+              { text: 'Yes', onPress: () => { BackHandler.exitApp() } }
+            ]
+          );
+          // Actions.pop()
+          return true;
+        }
+        else
+          return false;
+      });
+
   }
 
   render() {
@@ -67,8 +83,8 @@ export default class Home extends Component {
         type="overlay"
         ref={(ref) => this._drawer = ref}
         content={<DrawerItemObj.DrawerItem closeControlPanel={this.closeControlPanel}
-        isLoading={() => { this.setState({ visible: true }) }}
-        isLoaded={() => { this.setState({ visible: false }) }} />}
+          isLoading={() => { this.setState({ visible: true }) }}
+          isLoaded={() => { this.setState({ visible: false }) }} />}
         tapToClose={true}
         openDrawerOffset={0.2} // 20% gap on the right side of drawer 
         panCloseMask={0.2}
@@ -106,9 +122,16 @@ export default class Home extends Component {
 
   componentDidMount() {
     console.log('home componentDidMount called:')
-   
+
     this.listenForItems();
   }
+
+
+  componentWillUnmount() {
+    console.log('home componentWillUnmount called');
+    BackHandler.removeEventListener('hardwareBackPress', () => { });
+  }
+
 
   renderBooks(books) {
     var icon = books.thumbnail == "" ? require('./images/user_place_holder.png') :
@@ -151,7 +174,7 @@ export default class Home extends Component {
   }
 
   async listenForItems() {
-    this.setState({visible:true});
+    this.setState({ visible: true });
 
     //  await Firebase.database().ref(".info/connected")
     // .on("value",await function(snap) {
@@ -169,13 +192,13 @@ export default class Home extends Component {
       console.log('First, is ' + (isConnected ? 'online' : 'offline'));
       if (isConnected) {
 
-          // setTimeout(() => {
-          //   if(!this.state.loaded){
-          //   this.setState({visible:false})
-          //  this.showUnreachableDialog()
-          // }
-          // }, 10000)
-          
+        // setTimeout(() => {
+        //   if(!this.state.loaded){
+        //   this.setState({visible:false})
+        //  this.showUnreachableDialog()
+        // }
+        // }, 10000)
+
         var itemsRef = await Firebase.database().ref().child('books');
         itemsRef.on('value', (snap) => {
           var items = [];
@@ -226,8 +249,7 @@ export default class Home extends Component {
     });
   }
 
-  showUnreachableDialog()
-  {
+  showUnreachableDialog() {
 
     Alert.alert(
       'Unreachable',
@@ -311,3 +333,4 @@ export function listenForItems() {
   })
 
 }
+

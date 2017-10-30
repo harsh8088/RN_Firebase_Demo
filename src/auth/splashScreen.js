@@ -67,7 +67,7 @@ export default class SplashScreen extends Component {
                     </View>
 
                     <View style={{ marginBottom: 20, }}>
-                        <ActivityIndicator animating={this.state.visible} size={45}>
+                        <ActivityIndicator animating={this.state.visible} size={45} >
                         </ActivityIndicator>
                     </View>
                 </View>
