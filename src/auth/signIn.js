@@ -33,17 +33,17 @@ export default class SignIn extends Component {
     componentWillMount() {
         console.log('signIn componentWillMount called:');
 
-        if(Platform.OS=="android")
-        BackHandler.addEventListener('hardwareBackPress', function () {
-            if (Actions.currentScene == 'signIn') {
-                BackHandler.exitApp()
-                // Actions.pop()
-                // Actions.signIn({ type: "replace" })
-                return true;
-            }
-            else
-                return false;
-        });
+        if (Platform.OS == "android")
+            BackHandler.addEventListener('hardwareBackPress', function () {
+                if (Actions.currentScene == 'signIn') {
+                    BackHandler.exitApp()
+                    // Actions.pop()
+                    // Actions.signIn({ type: "replace" })
+                    return true;
+                }
+                else
+                    return false;
+            });
     }
 
     render() {

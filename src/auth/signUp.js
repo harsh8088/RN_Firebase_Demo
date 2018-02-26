@@ -148,7 +148,7 @@ export default class SignUp extends Component {
                             this.setState({ visible: false });
                             var errorCode = error.code;
                             var errorMessage = error.message;
-                            Toast.show(""+errorMessage);
+                            Toast.show("" + errorMessage);
                             console.log("SignUp error code", errorCode);
                             console.log("SignUp error message", errorMessage);
                         });

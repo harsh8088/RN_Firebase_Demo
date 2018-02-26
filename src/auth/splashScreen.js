@@ -81,10 +81,10 @@ export default class SplashScreen extends Component {
         console.log('splash componentDidMount called:');
         this.animate();
 
-        this.timeoutHandle = setTimeout(()=>{
+        this.timeoutHandle = setTimeout(() => {
             this.checkUser();
-       }, 3000);
-      
+        }, 3000);
+
     }
 
     animate() {
@@ -113,9 +113,9 @@ export default class SplashScreen extends Component {
                 Actions.signIn();
             }
         } catch (error) {
-             // Error retrieving data
+            // Error retrieving data
             console.log('user error:', error);
-           
+
         }
 
     }

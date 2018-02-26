@@ -38,11 +38,11 @@ const uploadImage = (uri, mime = 'image/jpeg') => {
                 return imageRef.getDownloadURL()
             })
             .then((url) => {
-               
+
                 resolve(url)
             })
             .catch((error) => {
-              
+
                 reject(error)
             })
     })
